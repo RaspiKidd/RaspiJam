@@ -1,11 +1,11 @@
-import scrollphat, time, pygame
+import scrollphat, time, pygame 		# importing libraries to use
+	
+pygame.init()					# Initialising pygame library 			
+pygame.joystick.init()				# Initilaising the joystick module from pygame 
 
-pygame.init()
-pygame.joystick.init()
 
-
-joycount = pygame.joystick.get_count()
-print('Available Joysticks: {}'.format(joycount))
+joycount = pygame.joystick.get_count()		# Returns the number of joysticks available
+print('Available Joysticks: {}'.format(joycount)) 
 
 joystick = pygame.joystick.Joystick(0)
 joystick.init()
