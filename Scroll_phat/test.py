@@ -1,3 +1,4 @@
+
 import scrollphat, time, pygame 		# importing libraries to use
 	
 pygame.init()					# Initialising pygame library 			
@@ -40,27 +41,27 @@ while True:					# Loop forever
 
     pygame.event.pump()				# Processes pygame event handlers internally
 
-    axis_value = joystick.get_axis(0)
+    axis_value = joystick.get_axis(0)		# Setting axis value for x
 
-    if axis_value > 0.8:
-        x += move_speed
-    elif axis_value < -0.8:
-        x -= move_speed
+    if axis_value > 0.8:			# If axis value is greater than 0.8 
+        x += move_speed				# increase move speed of x
+    elif axis_value < -0.8:			# If axis value is less than 0.8
+        x -= move_speed				# Decrease move speed
 
-    if x >= w:
-        x = w - 1
-    elif x < 0:
-        x = 0
+    if x >= w:					# if x is greater than width
+        x = w - 1				# x = width - 1
+    elif x < 0:					# If x is less than 0
+        x = 0					# x is equal to 0
 
-    axis_value = joystick.get_axis(1)
+    axis_value = joystick.get_axis(1)		# Setting axis value for y
 
-    if axis_value > 0.8:
-        y += move_speed
-    elif axis_value < -0.8:
-        y -= move_speed
+    if axis_value > 0.8:			# if y is greter than 0.8
+        y += move_speed				# increase move speed of y
+    elif axis_value < -0.8:			# if y is less than 0.8
+        y -= move_speed				# decrese move speed of y
 
-    y += grav
-    y -= jump_vel
+    y += grav					# y = y+grav 
+    y -= jump_v
 
     jump_vel *= jump_decay
 
