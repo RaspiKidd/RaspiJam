@@ -1,12 +1,11 @@
 import projectiles, random
 
 class Player ():
-
 	x = 0
 	y = 0
 	firing = False
 	image = None
-	soundEffect = 'sounds/player_laser.wav'
+	#soundEffect = 'sounds/player_laser.wav'
 	pygame = None
 	surface = None
 	width = 0
@@ -17,19 +16,19 @@ class Player ():
 	health = 5
 
 	def loadImages (self):
-		self.imagw = self.pygame.image.load ("assets/you_ship.png")
+		self.image = self.pygame.image.load ("assets/you_ship.png")
 
 	def draw (self):
 		self.surface.blit (self.image, (self.x, self.y))
-
-	def getPosition (self, pos):
+	
+	def setPosition (self, pos):
 		self.x = pos [0] - self.width / 2
 
 	def fire (self):
-		self.bullets.append (projectiles.Bullet (self.x + slef.width / 2, self.y, self,pygame, self.surface, self.bulletSpeed, self.bulletImage))
-		a = self.pygame.mixer.Sound (self.soundEffct)
-		a.set_volume (0.2)
-		a.play ()
+		self.bullets.append (projectiles.Bullet (self.x + self.width / 2, self.y, self.pygame, self.surface, self.bulletSpeed, self.bulletImage))
+		# a = self.pygame.mixer.Sound (self.soundEffect)
+		#a.set_volume (0.2)
+		#a.play ()
 
 	def drawBullets (self):
 		for b in self.bullets:
@@ -41,19 +40,20 @@ class Player ():
 
 	def checkForHit (self, thingToCheckAgainst):
 		bulletsToRemove = []
+		
 		for idx, b in enumerate (self.bullets):
 			if b.x > thingToCheckAgainst.x and b.x < thingToCheckAgainst.x + thingToCheckAgainst.width:
-				if b.y > thingToCHeckAgainst.y and b.y < thingToCHeckAgainst.y + thingToCheckAgainst.height:
+				if b.y > thingToCheckAgainst.y and b.y < thingToCheckAgainst.y + thingToCheckAgainst.height:
 					thingToCheckAgainst.registerHit ()
 					bulletsToRemove.append (idx)
 
 		for usedBullets in bulletsToRemove:
-			del self.bullets [usedBullet]
+			del self.bullets [usedBullets]
 
 		if thingToCheckAgainst.health <= 0:
 			return True
 
-	def init (self, x, y, pygame, surface):
+	def __init__ (self, x, y, pygame, surface):
 		self.x = x
 		self.y = y
 		self.pygame = pygame
@@ -63,7 +63,7 @@ class Player ():
 		dimentions = self.image.get_rect ().size
 		self.width = dimentions [0]
 		self.height = dimentions [1]
-
+		
 		self.x -= self.width / 2
 		self.y -= self.height + 10
 
@@ -72,7 +72,7 @@ class Enemy (Player):
 	y = 0
 	firing = False
 	image = None
-	sounEffect = 'sounds/enemy_laser.wav'
+	#soundEffect = 'sounds/enemy_laser.wav'
 	bulletImage = "assets/them_pellets.png"
 	bulletSpeed = 10
 	speed = 2
@@ -82,11 +82,11 @@ class Enemy (Player):
 
 	def tryToFire (self):
 		shouldFire = random.random ()
-		
-		if shouldFire <= 0.01:
+
+		if shoulFIre <= 0.01:
 			self.fire ()
 
-	def laodImages (self):
+	def loadImages (self):
 		self.image = self.pygame.image.load ("assets/them_ship.png")
 
 	def __init__ (self, x, y, pygame, surface, health):
@@ -95,11 +95,12 @@ class Enemy (Player):
 		self.pygame = pygame
 		self.surface = surface
 		self.loadImages ()
-		self.bullets = []
+		self.bullets =  []
 		self.health = health
 
 		dimentions = self.image.get_rect ().size
 		self.width = dimentions [0]
 		self.height = dimentions [1]
 
-		self.x -= self.width / 2
+		self.x -= self.width / 2 
+

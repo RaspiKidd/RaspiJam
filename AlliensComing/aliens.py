@@ -4,17 +4,22 @@ import pygame.event as GAME_EVENTS
 import pygame.time as GAME_TIME
 import ships
 
-windowWidth = 1024
-windowHeight = 614
+# to display game on monitor 
+#windowWidth = 1024
+#windowHeight = 614
+
+# To display game on pi screen
+windowWidth = 800
+windowHeight = 452
 
 pygame.init ()
 pygame.font.init ()
 surface = pygame.display.set_mode ((windowWidth, windowHeight))
 
-pygame.display.set_caption ("Allien's Are gonna kill me!")
+pygame.display.set_caption ("Alien's Are gonna kill me!")
 textFont = pygame.font.SysFont ("monospace", 50)
 
-gameStrated = False
+gameStarted = False
 gameStartedTime = 0
 gameFinishedTime = 0
 gameOver = False
@@ -25,18 +30,18 @@ MouseStates = None
 mouseDown = False
 
 # Image variables
-startScreen = pygame.image.load ("assests/start_screen.png")
-background = pygame.image.load ("assests/background.png")
+startScreen = pygame.image.load ("assets/start_screen.png")
+background = pygame.image.load ("assets/background.png")
 
 # Ships
-ship = ships.Player (windowWidth / 2, windowHeihgt, pygame, surface)
+ship = ships.Player(windowWidth / 2, windowHeight, pygame, surface)
 enemyShips = []
 
 lastEnemyCreated = 0
 enemyInterval = random.randint (1000, 2500)
 
 # Sound setup
-pygame.mixer.init ()
+#pygame.mixer.init ()
 
 def updateGame ():
 	global mouseDown, gameOver

@@ -61,7 +61,7 @@ while True:					# Loop forever
         y -= move_speed				# decrese move speed of y
 
     y += grav					# y = y+grav 
-    y -= jump_v
+    y -= jump_vel
 
     jump_vel *= jump_decay
 
